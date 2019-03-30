@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<title>BuyMangoes</title>
+<!---------add angularjs-------------->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+ <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<style>
+
+html, body {
+ margin: 0;
+ padding: 0;
+ font-family: 'Roboto', sans-serif;
+ width:100%;
+}
+
+.header {
+ padding: 15px;
+}
+
+.header img {
+   display: inline-block;
+}
+
+.header h1 {
+   display: inline-block;
+}
+
+.main {
+ background-color: #ffcc00 ;
+ padding: 40px 0;
+}
+
+.main h1 {
+ color: #F65A5B ;
+ font-size: 64px;
+ margin: 0 0 80px 0;
+ padding: 20px 0;
+   line-height: 60px;
+   width: 50%;
+}
+
+.main h2 {
+ background-color: #DDDDDD ;
+ color: #999999 ;
+ font-size: 20px;
+ margin: 0 0 40px 0;
+ padding: 20px 0;
+}
+
+.thumbnail {
+ border: 0px;
+ position: relative;
+ padding: 50px;
+   border-radius: 0;
+   margin-bottom:50px;
+}
+
+.thumbnail img {
+   margin-top: 10px;
+ margin-bottom: 30px;
+ max-width: 100%;
+}
+
+.title,
+.date {
+ color: #444;
+ margin: 0;
+ font-size: 18px;
+   font-weight: 800;
+}
+
+.details {
+   color: #cc5200 ;
+   font-size: 15px;
+   font-weight: 200;
+}
+
+.price {
+ background-color: #00cc00 ;
+ color: #fff;
+ font-size: 18px;
+   border-radius: 50%;
+   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+   font-weight: 200;
+   height: 80px;
+   line-height: 80px;
+   text-align: center;
+   width: 80px;
+ position: absolute;
+ top: -40px;
+ right: 20px;
+}
+
+.rating {
+ text-align: right;
+ -webkit-user-select: none;
+    -moz-user-select: none;
+     -ms-user-select: none;
+ margin: 30px 0 -30px 20px;
+}
+
+.likes
+{
+   background: #33ff33 ;
+ color: #fff;
+ cursor: pointer;
+ display: inline-block;
+ font-size: 15px;
+   line-height: 40px;
+   min-width: 40px;
+   height: 40px;
+   border-radius: 50%;
+ margin: 0 -30px 0 40px;
+   text-align: center;
+   font-weight: 200;
+   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+   transition: background 500ms;
+}
+.dislikes {
+   background: #ff1a1a ;
+ color: #fff;
+ cursor: pointer;
+ display: inline-block;
+ font-size: 15px;
+   line-height: 40px;
+   min-width: 40px;
+   height: 40px;
+   border-radius: 50%;
+ margin: 0 -30px 0 40px;
+   text-align: center;
+   font-weight: 200;
+   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+   transition: background 500ms;
+}
+
+.likes:hover,
+.dislikes:hover {
+ color: #F65A5B ;
+   background: rgba(246, 90, 91, 0.25);
+   transition: background 500ms;
+}
+
+.footer {
+ text-align: center;
+ margin: 80px 0 110px;
+}
+
+.footer h2 {
+ font-size: 24px;
+ margin-bottom: 25px;
+}
+
+.footer img {
+   margin: 0 10px;
+}
+
+</style>
+<body ng-app="myApp" >
+ <div class="header">
+      <div class="container">
+        <h1 style="font: Montserrat, sans-serif;">BuyMangoes</h1>
+      </div>
+ </div>
+
+<div class="main" ng-controller="personCtrl">
+      <div class="container">
+
+        <h1>{{ title }}</h1>
+        <h2>{{ promo }}</h2>
+
+        <div ng-repeat="product in products" class="col-md-6"> 
+  	   <div class="thumbnail"> 
+    	     <img ng-src="{{ product.cover }}"> 
+    	     <p class="title">{{ product.name }}</p> 
+	     <p class="price">{{ product.price | currency }}</p> 
+	     <p class="details">{{ product.details }}</p> 
+		<div class="rating">
+		   <p class="likes" ng-click="plusOne($index)">+ {{ product.likes }} </p>
+		   <p class="dislikes" ng-click="minusOne($index)">- {{ product.dislikes }} </p>
+		</div>
+  	   </div> 
+        </div>
+
+    </div>
+</div>
+
+<div class="footer">
+      <div class="container">
+        <h2>Available for iPhone and Android.</h2>
+        <img src="http://s3.amazonaws.com/codecademy-content/projects/shutterbugg/app-store.png" width="120px" />
+        <img src="http://s3.amazonaws.com/codecademy-content/projects/shutterbugg/google-play.png" width="110px" />
+      </div>
+</div>
+
+<script>
+angular.module('myApp', []).controller('personCtrl', function($scope) {
+    $scope.title = 'Our Products'; 
+  $scope.promo = 'Juice Mangoes';
+  $scope.products = [
+  	{ 
+    	name: 'Alphonsos -Ratnagiri / Devgarh Hapus, Maharashtra', 
+    	price: 19, 
+    	details: 'Alphonso Mango is one of the best variety of mango found in India in terms of sweetness and flavor. Maharashtra region of Ratnagiri, Devgarh,               Raigad and Konkan are the only place in western part of India where Alphonso Mango are cultivated and also one of the most expensive kinds of mango in India.', 
+    	cover: 'E:\alphanso.png',
+    	likes: 0,
+    	dislikes: 0
+  	}, 
+  	{ 
+    	name: 'Chaunsa – North India', 
+    	price: 8, 
+    	details: 'Chaunsa is one the sweetest mangoes grown in North India, It has medium oblong and has a golden yellow colour with a red blush. It mainly produced in Mirpur Khas Sindh in Punjab of Pakistan.', 
+    	cover: 'E:\chausa-mango.jpg',
+    	likes: 0,
+    	dislikes: 0
+  	}, 
+  	{ 
+    	name: 'Dasheri – Malihabad, Uttar Pradesh', 
+    	price: 11.99, 
+    	details: 'Dasheri is delicious variety of mango basically grown in North parts of India, Its one of the very famous variety of mango in north India. Malihabad in Uttar Pradesh is the largest producer of Dasheri mango and along with other varieties of mangoes such as Chausa, Fazli, Lucknowa, Jauhari and Safeda.', 
+    	cover: 'E:\Dasheri-mango.jpg',
+    	likes: 0,
+    	dislikes: 0 
+  	}, 
+  	{ 
+    	name: 'Kesar – Saurashtra, Gujarat', 
+    	price: 7.99, 
+    	details: 'Kesar Mangoes is also simply called Gir Kesar because cultivar grown in the foothills of Girnar in the districts of Junagadh and Amreli.', 
+    	cover: 'E:\Kesar-mango.jpg',
+    	likes: 0,
+    	dislikes: 0 
+  	}
+  ];
+  $scope.plusOne = function(index) { 
+  	$scope.products[index].likes += 1; 
+	};
+	$scope.minusOne = function(index) { 
+  	$scope.products[index].dislikes += 1; 
+	};
+    
+});
+</script>
+</body>
+
+</html>
