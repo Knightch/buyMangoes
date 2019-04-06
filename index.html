@@ -1,256 +1,410 @@
 <!DOCTYPE html>
-<html>
-<title>BuyMangoes</title>
-<!---------add angularjs-------------->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<html lang="en">
+<head>
+  <title>BuyMangoes</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
- <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+</head>
 <style>
-
-html, body {
- margin: 0;
- padding: 0;
- font-family: 'Roboto', sans-serif;
- width:100%;
+#about {
+  position: relative;
+  font-family: Arial;
 }
 
+
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add a gray background color with some padding */
+body {
+  font-family: Arial;
+  padding: 20px;
+  
+}
+
+/* Header/Blog Title */
 .header {
- padding: 15px;
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
 }
 
-.header img {
-   display: inline-block;
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {   
+  float: left;
+  width: 75%;
 }
 
-.header h1 {
-   display: inline-block;
+/* Right column */
+.rightcolumn {
+  float: left;
+  width: 25%;
+  padding-left: 20px;
 }
 
-.main {
- background-color: #ffcc00 ;
- padding: 40px 0;
+/* Fake image */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
 }
 
-.main h1 {
- color: #F65A5B ;
- font-size: 64px;
- margin: 0 0 80px 0;
- padding: 20px 0;
-   line-height: 60px;
-   width: 50%;
+/* Add a card effect for articles */
+.card {
+   background-color: white;
+   padding: 20px;
+   margin-top: 20px;
 }
 
-.main h2 {
- background-color: #DDDDDD ;
- color: #999999 ;
- font-size: 20px;
- margin: 0 0 40px 0;
- padding: 20px 0;
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
-.thumbnail {
- border: 0px;
- position: relative;
- padding: 50px;
-   border-radius: 0;
-   margin-bottom:50px;
+
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {   
+    width: 100%;
+    padding: 0;
+  }
+  
 }
 
-.thumbnail img {
-   margin-top: 10px;
- margin-bottom: 30px;
- max-width: 100%;
-}
-
-.title,
-.date {
- color: #444;
- margin: 0;
- font-size: 18px;
-   font-weight: 800;
-}
-
-.details {
-   color: #cc5200 ;
-   font-size: 15px;
-   font-weight: 200;
-}
-
-.price {
- background-color: #00cc00 ;
- color: #fff;
- font-size: 18px;
-   border-radius: 50%;
-   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-   font-weight: 200;
-   height: 80px;
-   line-height: 80px;
-   text-align: center;
-   width: 80px;
- position: absolute;
- top: -40px;
- right: 20px;
-}
-
-.rating {
- text-align: right;
- -webkit-user-select: none;
-    -moz-user-select: none;
-     -ms-user-select: none;
- margin: 30px 0 -30px 20px;
-}
-
-.likes
+body 
 {
-   background: #33ff33 ;
- color: #fff;
- cursor: pointer;
- display: inline-block;
- font-size: 15px;
-   line-height: 40px;
-   min-width: 40px;
-   height: 40px;
-   border-radius: 50%;
- margin: 0 -30px 0 40px;
-   text-align: center;
-   font-weight: 200;
-   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-   transition: background 500ms;
+  background-image:  url("mangotree1.png"),url("mangotree2.png");
+  background-color: #ffdb4d;
 }
-.dislikes {
-   background: #ff1a1a ;
- color: #fff;
- cursor: pointer;
- display: inline-block;
- font-size: 15px;
-   line-height: 40px;
-   min-width: 40px;
-   height: 40px;
-   border-radius: 50%;
- margin: 0 -30px 0 40px;
-   text-align: center;
-   font-weight: 200;
-   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-   transition: background 500ms;
+#header
+{
+background-color:#003329;
+}
+#box 
+{
+height:150px;
+width:100%;
+background-color:black;
 }
 
-.likes:hover,
-.dislikes:hover {
- color: #F65A5B ;
-   background: rgba(246, 90, 91, 0.25);
-   transition: background 500ms;
+.fa-facebook {
+  background: black;
+  color: white;
+}
+.fa-youtube {
+  background: black;
+  color: white;
+}
+.fa-twitter {
+  background: black;
+  color: white;
+}
+.fa-instagram {
+  background: black;
+  color: white;
+}
+.fa-yahoo {
+  background: black;
+  color: white;
 }
 
-.footer {
- text-align: center;
- margin: 80px 0 110px;
+.fa {
+  padding: 5px;
+  font-size: 20px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 5px;
+  border-radius: 10px;
 }
 
-.footer h2 {
- font-size: 24px;
- margin-bottom: 25px;
+.fa:hover {
+    opacity: 0.7;
+}
+#navbar 
+{
+background-color:#004d00;
 }
 
-.footer img {
-   margin: 0 10px;
-}
 
 </style>
-<body ng-app="myApp" >
- <div class="header">
-      <div class="container">
-        <h1 style="font: Montserrat, sans-serif;">BuyMangoes</h1>
-      </div>
- </div>
 
-<div class="main" ng-controller="personCtrl">
-      <div class="container">
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
-        <h1>{{ title }}</h1>
-        <h2>{{ promo }}</h2>
+<nav class="navbar navbar-expand-lg navbar-light   fixed-top" id="navbar">
+  <a class="navbar-brand" href="#mypage">BuyMangoes</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText" >
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item " >
+        <a class="nav-link" href="#Buy" >Buy </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#About">About us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#Blog"><button type="button" class="btn btn-success btn-xs">Blog</button></a>
+      </li>
+    </ul>
+    
 
-        <div ng-repeat="product in products" class="col-md-6"> 
-  	   <div class="thumbnail"> 
-    	     <img ng-src="{{ product.cover }}"> 
-    	     <p class="title">{{ product.name }}</p> 
-	     <p class="price">{{ product.price | currency }}</p> 
-	     <p class="details">{{ product.details }}</p> 
-		<div class="rating">
-		   <p class="likes" ng-click="plusOne($index)">+ {{ product.likes }} </p>
-		   <p class="dislikes" ng-click="minusOne($index)">- {{ product.dislikes }} </p>
-		</div>
-  	   </div> 
-        </div>
+  </div>
+</nav>
+
+
+<br><br><br>
+
+
+
+<!--------------------------------------buy--------------------------------------------------->
+<div class="container" id="Buy">
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="alphanso.png " alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Product</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Price</li>
+            <li class="list-group-item">Stock</li>
+          </ul>
+          <div class="card-body">
+            <a href="#" class="card-link">Add to Cart</a>
+       </div>
+     </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="chausa-mango.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Product</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Price</li>
+            <li class="list-group-item">Stock</li>
+          </ul>
+          <div class="card-body">
+            <a href="#" class="card-link">Add to Cart</a>
+       </div>
+     </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="Dasheri-mango.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Product</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Price</li>
+            <li class="list-group-item">Stock</li>
+          </ul>
+          <div class="card-body">
+            <a href="#" class="card-link">Add to Cart</a>
+       </div>
+     </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="Kesar-mango.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Product</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Price</li>
+            <li class="list-group-item">Stock</li>
+          </ul>
+          <div class="card-body">
+            <a href="#" class="card-link">Add to Cart</a>
+       </div>
+     </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="Mulgoba.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Product</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Price</li>
+            <li class="list-group-item">Stock</li>
+          </ul>
+          <div class="card-body">
+            <a href="#" class="card-link">Add to Cart</a>
+       </div>
+     </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="neelam.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Product</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Price</li>
+            <li class="list-group-item">Stock</li>
+          </ul>
+          <div class="card-body">
+            <a href="#" class="card-link">Add to Cart</a>
+       </div>
+     </div>
+    </div>
+  </div> 
+ 
+</div>
+<br>
+
+<!-------------------------------------------About--------------------------------------------------------------------->
+
+<section class="container" id="About">
+  <img src="mangobackground3.jpg" alt="Nature" style="width:100%;">
+  <div class="text-block" >
+    <h4>About Us</h4>
+    <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+  </div>
+</section>
+
+
+
+<!-----------------------------------------------Blog-------------------------------------------------------------------->
+
+<div class="row" id="Blog">
+  <div class="leftcolumn">
+    <div class="card">
+      <h2>TITLE HEADING</h2>
+      <h5>Title description, Dec 7, 2017</h5>
+      <div class="fakeimg" style="height:200px;">Image</div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+    <div class="card">
+      <h2>TITLE HEADING</h2>
+      <h5>Title description, Sep 2, 2017</h5>
+      <div class="fakeimg" style="height:200px;">Image</div>
+      <p>Some text..</p>
+      <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+    </div>
+  </div>
+  <div class="rightcolumn">
+    <div class="card">
+      <h2>About Me</h2>
+      <div class="fakeimg" style="height:100px;">Image</div>
+      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+    </div>
+    <div class="card">
+      <h3>Popular Post</h3>
+      <div class="fakeimg">Image</div><br>
+      <div class="fakeimg">Image</div><br>
+      <div class="fakeimg">Image</div>
+    </div>
+    <div class="card">
+      <h3>Follow Me</h3>
+      <p>Some text..</p>
+    </div>
+  </div>
+</div>
+
+
+<!------------------------------------footer---------------------------------------------------->
+<!-- Footer -->
+<footer class="page-footer font-small special-color-dark pt-4">
+
+    <!-- Footer Elements -->
+    <div class="container">
+     
+      <!-- Social buttons -->
+      <ul class="list-unstyled list-inline text-center">
+        <li class="list-inline-item">
+           <a href="#" class="fa fa-facebook btn-floating btn-fb mx-1 fab fa-facebook"></a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#" class="fa fa-twitter btn-floating btn-fb mx-1 fab fa-twitter"></a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#" class="fa fa-youtube btn-floating btn-fb mx-1 fab fa-youtube"></a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#" class="fa fa-instagram btn-floating btn-fb mx-1 fab fa-instagram"></a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#" class="fa fa-yahoo btn-floating btn-fb mx-1 fab fa-yahoo"></a>
+        </li>
+      </ul>
+      <!-- Social buttons -->
 
     </div>
-</div>
+    <!-- Footer Elements -->
 
-<div class="footer">
-      <div class="container">
-        <h2>Available for iPhone and Android.</h2>
-        <img src="http://s3.amazonaws.com/codecademy-content/projects/shutterbugg/app-store.png" width="120px" />
-        <img src="http://s3.amazonaws.com/codecademy-content/projects/shutterbugg/google-play.png" width="110px" />
-      </div>
-</div>
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">&copy;2019 
+      <a href="#"> Asli Indian</a>
+    </div>
+    <!-- Copyright -->
+    
+
+  </footer>
+  <!-- Footer -->
 
 <script>
-angular.module('myApp', []).controller('personCtrl', function($scope) {
-    $scope.title = 'Our Products'; 
-  $scope.promo = 'Juice Mangoes';
-  $scope.products = [
-  	{ 
-    	name: 'Alphonsos -Ratnagiri / Devgarh Hapus, Maharashtra', 
-    	price: 19, 
-    	details: 'Alphonso Mango is one of the best variety of mango found in India in terms of sweetness and flavor. Maharashtra region of Ratnagiri, Devgarh,               Raigad and Konkan are the only place in western part of India where Alphonso Mango are cultivated and also one of the most expensive kinds of mango in India.', 
-    	cover: 'E:\alphanso.png',
-    	likes: 0,
-    	dislikes: 0
-  	}, 
-  	{ 
-    	name: 'Chaunsa – North India', 
-    	price: 8, 
-    	details: 'Chaunsa is one the sweetest mangoes grown in North India, It has medium oblong and has a golden yellow colour with a red blush. It mainly produced in Mirpur Khas Sindh in Punjab of Pakistan.', 
-    	cover: 'E:\chausa-mango.jpg',
-    	likes: 0,
-    	dislikes: 0
-  	}, 
-  	{ 
-    	name: 'Dasheri – Malihabad, Uttar Pradesh', 
-    	price: 11.99, 
-    	details: 'Dasheri is delicious variety of mango basically grown in North parts of India, Its one of the very famous variety of mango in north India. Malihabad in Uttar Pradesh is the largest producer of Dasheri mango and along with other varieties of mangoes such as Chausa, Fazli, Lucknowa, Jauhari and Safeda.', 
-    	cover: 'E:\Dasheri-mango.jpg',
-    	likes: 0,
-    	dislikes: 0 
-  	}, 
-  	{ 
-    	name: 'Kesar – Saurashtra, Gujarat', 
-    	price: 7.99, 
-    	details: 'Kesar Mangoes is also simply called Gir Kesar because cultivar grown in the foothills of Girnar in the districts of Junagadh and Amreli.', 
-    	cover: 'E:\Kesar-mango.jpg',
-    	likes: 0,
-    	dislikes: 0 
-  	}
-  ];
-  $scope.plusOne = function(index) { 
-  	$scope.products[index].likes += 1; 
-	};
-	$scope.minusOne = function(index) { 
-  	$scope.products[index].dislikes += 1; 
-	};
-    
-});
-</script>
-</body>
 
+$(document).ready(function(){
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+  
+  $(window).scroll(function() {
+    $(".slideanim").each(function(){
+      var pos = $(this).offset().top;
+
+      var winTop = $(window).scrollTop();
+        if (pos < winTop + 600) {
+          $(this).addClass("slide");
+        }
+    });
+  });
+})
+
+</script>
+
+</body>
 </html>
